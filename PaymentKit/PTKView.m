@@ -395,6 +395,13 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     if ([textField isEqual:self.cardNumberField] && !_isInitialState) {
         [self stateCardNumber];
     }
+    
+    if ([textField isEqual:self.cardNumberField]) {
+        if ([self.delegate respondsToSelector:@selector(paymentViewDidStartEditing:)]) {
+            [self.delegate paymentViewDidStartEditing: self];
+        }
+    }
+    
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)replacementString
